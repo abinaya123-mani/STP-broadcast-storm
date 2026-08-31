@@ -1,5 +1,4 @@
 # STP-broadcast-storm
-# STP Broadcast Storm
 
 ## Overview
 
