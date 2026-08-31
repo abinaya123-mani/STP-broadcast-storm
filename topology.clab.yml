@@ -1,0 +1,39 @@
+name: stp-broadcast-storm
+
+topology:
+  nodes:
+    h1:
+      kind: linux
+      image: alpine:3.20
+
+    h2:
+      kind: linux
+      image: alpine:3.20
+
+    sw1:
+      kind: linux
+      image: stp-ovs:latest
+      privileged: true
+
+    sw2:
+      kind: linux
+      image: stp-ovs:latest
+      privileged: true
+
+    sw3:
+      kind: linux
+      image: stp-ovs:latest
+      privileged: true
+
+    sw4:
+      kind: linux
+      image: stp-ovs:latest
+      privileged: true
+
+  links:
+    - endpoints: ["h1:eth1", "sw1:eth1"]
+    - endpoints: ["sw1:eth2", "sw2:eth1"]
+    - endpoints: ["sw2:eth2", "sw3:eth1"]
+    - endpoints: ["sw3:eth2", "sw4:eth1"]
+    - endpoints: ["sw4:eth2", "sw1:eth3"]
+    - endpoints: ["h2:eth1", "sw3:eth3"]
